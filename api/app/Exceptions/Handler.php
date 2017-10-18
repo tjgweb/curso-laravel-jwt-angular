@@ -54,6 +54,9 @@ class Handler extends ExceptionHandler
         else if ($exception instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException) {
             return response()->json(['error' => 'token_invalid'], $exception->getStatusCode());
         }
+        else if ($exception instanceof \Tymon\JWTAuth\Exceptions\JWTException) {
+            return response()->json(['error' => $exception->getMessage()], $exception->getStatusCode());
+        }
         else if ($exception instanceof \Tymon\JWTAuth\Exceptions\TokenBlacklistedException){
             return response()->json(['error' => 'token_has_been_blacklisted'], $exception->getStatusCode());
         }

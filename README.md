@@ -13,8 +13,13 @@ Vamos criar uma API utilizando o famoso Laravel na sua nova versão 5.5 e Angula
 
 ### Agradecimentos
 - [Laravel](https://laravel.com/)
+- [tymon/jwt-auth](https://github.com/tymondesigns/jwt-auth)
+- [barryvdh/laravel-cors](https://github.com/barryvdh/laravel-cors)
 - [Angular](https://angular.io/)
+- [csotomon/Angular2-AdminLTE](https://github.com/csotomon/Angular2-AdminLTE)
 - [JWT](https://jwt.io/)
+- [AdminLTE](https://adminlte.io/)
+
 
 
 ### License
