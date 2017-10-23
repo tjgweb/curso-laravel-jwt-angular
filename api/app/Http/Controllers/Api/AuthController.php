@@ -25,7 +25,9 @@ class AuthController extends Controller
             return response()->json(['error' => 'invalid_credentials'], 401);
         }
 
-        return response()->json(compact('token'));
+        $user = $this->jwtAuth->authenticate($token);
+
+        return response()->json(compact('token', 'user'));
     }
 
     public function refresh()
