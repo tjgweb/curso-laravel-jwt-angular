@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from './../services/auth.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,8 +12,11 @@ import { AuthService } from './../services/auth.service';
 export class LoginComponent implements OnInit {
 
   f: FormGroup;
+  errorCredentials = false;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService) { }
+  constructor(private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private router: Router) { }
 
   ngOnInit() {
     this.f = this.formBuilder.group({
@@ -22,7 +27,14 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.authService.login(this.f.value).subscribe(
-      (data) => { console.log(data); }
+      (resp) => {
+        this.router.navigate(['admin']);
+      },
+      (errorResponse: HttpErrorResponse) => {
+        if (errorResponse.status === 401) {
+          this.errorCredentials = true;
+        }
+      }
     );
   }
 
