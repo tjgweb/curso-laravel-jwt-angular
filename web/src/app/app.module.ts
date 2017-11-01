@@ -24,7 +24,7 @@ import { AppComponent } from './app.component';
   ],
   providers: [
     AuthGuard,
-    // {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     {provide: HTTP_INTERCEPTORS, useClass: RefreshTokenInterceptor, multi: true },
     {provide: ErrorHandler, useClass: AplicationErrorHandle }
   ],
