@@ -11,7 +11,7 @@ export class RefreshTokenInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     return next.handle(request).catch((errorResponse: HttpErrorResponse) => {
-      const error = (typeof errorResponse.error !== 'object') ? JSON.parse(errorResponse.error) : errorResponse;
+      const error = (typeof errorResponse.error !== 'object') ? JSON.parse(errorResponse.error) : errorResponse.error;
 
       if (errorResponse.status === 401 && error.error === 'token_expired') {
         const http = this.injector.get(HttpClient);
